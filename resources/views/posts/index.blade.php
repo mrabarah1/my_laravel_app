@@ -4,7 +4,7 @@
 <x-layout>
     
     @auth
-        <h1>Logged In</h1>
+        <h1>Welcome Back, {{ Auth::user()->username}}</h1>
     @endauth
 
     @guest

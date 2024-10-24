@@ -1,15 +1,20 @@
 <x-layout>
     <h1 class="title">Welcome Back</h1>
+    {{-- <h1 class="title">Welcome Back, {{ Auth::check() ? Auth::user()->name : 'Guest' }}</h1> --}}
 
-    <div class="mx-auto max-w-screen-sm card">
+    <div class="mx-auto max-w-scr
+    een-sm card">
 
         <form action="{{ route('login') }}" method="post">
             @csrf
-           
+            @error('failed')
+                <p class="error">{{ $message }}</p>
+            @enderror
             {{-- Email --}}
             <div class="mb-4">
                 <label for="email">Email</label>
-                <input type="text" name="email" value="{{ old('email')}}" class="input @error('email')
+                <input type="text" name="email" value="{{ old('email') }}"
+                    class="input @error('email')
                     ring-red-500
                 @enderror">
                 @error('email')
@@ -19,7 +24,8 @@
             {{-- Password --}}
             <div class="mb-4">
                 <label for="password">Password</label>
-                <input type="password" name="password" class="input @error('password')
+                <input type="password" name="password"
+                    class="input @error('password')
                     ring-red-500
                 @enderror">
                 @error('password')
@@ -32,7 +38,7 @@
                 <input type="checkbox" name="remember" id="remember">
                 <label for="remember">Remember me</label>
             </div>
-           
+
 
             {{-- Submit Button --}}
             <button class="btn">Login</button>
